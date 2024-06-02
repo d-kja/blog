@@ -1,8 +1,10 @@
-import { cn } from "@/lib/utils"
-import { ComponentProps } from "react"
+"use client"
 
-interface ParagraphProps extends ComponentProps<'p'> { }
+import { cn } from "@/lib/utils"
+import { type HTMLMotionProps, motion } from "framer-motion"
+
+interface ParagraphProps extends HTMLMotionProps<'p'>{ }
 
 export const P = ({ children, className, ...props }: ParagraphProps) => {
-	return <p className={cn("fade-in", className)} {...props}>{children}</p>
+	return <motion.p className={cn("fade-in", className)} {...props}>{children}</motion.p>
 }

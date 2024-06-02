@@ -9,14 +9,15 @@ import {
 import { ToggleTheme } from "../shards/toggle-theme"
 
 export const Navigation = () => {
+
 	return (
 		<nav className="flex items-center justify-between p-4">
 			<NavigationButton href="/">D-kja</NavigationButton>
 
 			<div className="flex gap-5 items-center">
-				<NavigationButton href="/posts">Posts</NavigationButton>
-				<NavigationButton href="/projects">Projects</NavigationButton>
-				<NavigationButton href="/about">About</NavigationButton>
+				<NavigationButton href="/posts" className="hidden md:inline-block">Posts</NavigationButton>
+				<NavigationButton href="/projects" className="hidden md:inline-block">Projects</NavigationButton>
+				<NavigationButton href="/about" className="hidden md:inline-block">About</NavigationButton>
 
 				<TooltipProvider>
 					<Tooltip>
