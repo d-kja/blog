@@ -23,7 +23,7 @@ export const Footer = () => {
 					Copy- right? <span className="not-italic">🤔</span>
 				</p>
 
-				<span className="lousy-text text-xs -mt-1">
+				<span className="lousy-text text-xs">
 					&copy; {currentYear}
 				</span>
 			</div>
