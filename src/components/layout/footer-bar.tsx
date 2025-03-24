@@ -1,20 +1,20 @@
-'use client'
+"use client";
 
-import { CaretUpIcon } from "@radix-ui/react-icons"
-import { Button } from "../ui/button"
+import { CaretUpIcon } from "@radix-ui/react-icons";
+import { Button } from "../ui/button";
 
 export const Footer = () => {
-	const currentYear = new Date().getFullYear()
+	const currentYear = new Date().getFullYear();
 
 	const handleScrollTop = () => {
-		if (!document) return
+		if (!document) return;
 
 		// Safari
-		document.body.scrollTop = 0
+		document.body.scrollTop = 0;
 
 		// Any normal browser 😉
-		document.documentElement.scrollTop = 0
-	}
+		document.documentElement.scrollTop = 0;
+	};
 
 	return (
 		<footer className="flex justify-between items-center max-w-screen-lg w-full mx-auto mt-auto mb-12">
@@ -23,14 +23,12 @@ export const Footer = () => {
 					Copy- right? <span className="not-italic">🤔</span>
 				</p>
 
-				<span className="lousy-text text-xs">
-					&copy; {currentYear}
-				</span>
+				<span className="lousy-text text-xs">&copy; {currentYear}</span>
 			</div>
 
 			<Button variant="outline" className="w-min p-2" onClick={handleScrollTop}>
 				<CaretUpIcon className="w-5 h-5" />
 			</Button>
 		</footer>
-	)
-}
+	);
+};
