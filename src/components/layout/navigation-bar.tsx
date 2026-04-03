@@ -5,29 +5,45 @@ import {
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Github } from "lucide-react";
+import { MobileNav } from "../shards/mobile-nav";
 import { NavigationButton } from "../shards/navigation-button";
 import { ToggleTheme } from "../shards/toggle-theme";
 
 export const Navigation = () => {
 	return (
 		<nav className="flex items-center justify-between p-4">
-			<NavigationButton href="/">D-kja</NavigationButton>
+			<NavigationButton href="/" className="font-semibold tracking-wide">
+				D-kja
+			</NavigationButton>
 
 			<div className="flex gap-5 items-center">
-				<NavigationButton href="/posts" className="hidden md:inline-block">
+				<NavigationButton
+					href="/posts"
+					className="hidden md:inline-block animated-underline"
+				>
 					Posts
 				</NavigationButton>
-				<NavigationButton href="/projects" className="hidden md:inline-block">
+				<NavigationButton
+					href="/projects"
+					className="hidden md:inline-block animated-underline"
+				>
 					Projects
 				</NavigationButton>
-				<NavigationButton href="/about" className="hidden md:inline-block">
+				<NavigationButton
+					href="/about"
+					className="hidden md:inline-block animated-underline"
+				>
 					About
 				</NavigationButton>
 
 				<TooltipProvider>
 					<Tooltip>
 						<TooltipTrigger asChild>
-							<NavigationButton target="_blank" href="https://github.com/d-kja">
+							<NavigationButton
+								target="_blank"
+								href="https://github.com/d-kja"
+								className="hover:scale-105 transition-transform"
+							>
 								<Github
 									aria-label="Github"
 									strokeWidth={2.25}
@@ -42,6 +58,8 @@ export const Navigation = () => {
 				</TooltipProvider>
 
 				<ToggleTheme />
+
+				<MobileNav />
 			</div>
 		</nav>
 	);

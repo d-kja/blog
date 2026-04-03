@@ -6,7 +6,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { MoonStarIcon, SunIcon } from "lucide-react";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
-import { Div } from "./animated/image";
+import { Div } from "./animated/div";
 
 import { animations } from "@/lib/animations";
 

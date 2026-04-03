@@ -1,20 +1,33 @@
-import type { AnimationProps } from "framer-motion";
+import type { AnimationProps, Transition } from "framer-motion";
 
-type Opts = {
+type AnimationOpts = {
 	delay?: number;
 	y?: number;
+	duration?: number;
 };
 
-const fade: (opts: Opts) => AnimationProps["variants"] = ({
+/** Standard easing curve for all animations */
+const EASE_CURVE = [0.25, 0.1, 0.25, 1] as const;
+
+/** Delay multiplier for staggered animations */
+const DELAY_MULTIPLIER = 0.4;
+
+/**
+ * Fade animation with optional vertical offset
+ * Uses enter/exit states for AnimatePresence compatibility
+ */
+const fade = ({
 	delay = 0,
 	y = 0,
-}: Opts) => ({
+	duration = 0.5,
+}: AnimationOpts): AnimationProps["variants"] => ({
 	enter: {
 		opacity: 1,
 		y: 0,
 		transition: {
-			delay: delay * 0.4,
-			easings: ["easeInOut"],
+			delay: delay * DELAY_MULTIPLIER,
+			duration,
+			ease: EASE_CURVE,
 		},
 	},
 	exit: {
@@ -23,13 +36,17 @@ const fade: (opts: Opts) => AnimationProps["variants"] = ({
 	},
 });
 
-const groupFade: (opts: Opts) => AnimationProps["variants"] = ({
+/**
+ * Group fade for staggering child animations
+ * Uses beforeChildren to ensure parent animates first
+ */
+const groupFade = ({
 	delay = 0,
-}: Opts) => ({
+}: AnimationOpts): AnimationProps["variants"] => ({
 	enter: {
 		opacity: 1,
 		transition: {
-			delay: delay * 0.3,
+			delay: delay * DELAY_MULTIPLIER,
 			when: "beforeChildren",
 		},
 	},
@@ -38,7 +55,15 @@ const groupFade: (opts: Opts) => AnimationProps["variants"] = ({
 	},
 });
 
+/** Spring transition config for hover interactions */
+const hoverSpring: Transition = {
+	type: "spring",
+	stiffness: 400,
+	damping: 25,
+};
+
 export const animations = {
 	fade,
 	groupFade,
+	hoverSpring,
 };

@@ -1,89 +1,118 @@
-import Image from "next/image"
-import dayjs from "dayjs"
+"use client";
 
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { Heading } from "@/components/shards/animated/heading"
-import { Div } from "@/components/shards/animated/image"
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { Github } from "lucide-react";
+import dayjs from "dayjs";
 
-import { BLUR_PLACEHOLDER } from "@/lib/constants"
-import { animations } from "@/lib/animations"
+import { Heading } from "@/components/shards/animated/heading";
+import { Div } from "@/components/shards/animated/div";
+import { BLUR_PLACEHOLDER } from "@/lib/constants";
+import { animations } from "@/lib/animations";
+import { cn } from "@/lib/utils";
+
+const SKILLS = ["TypeScript", "React", "Rust", "Go"];
 
 export const DetailsCard = () => {
 	const birthDate = dayjs("2002-08-15");
+	const startDate = dayjs("2020-03-01");
 	const currentDate = dayjs();
 
 	const age = currentDate.diff(birthDate, "years", false);
+	const years = currentDate.diff(startDate, "years", false);
 
-  return (
-			<section
-				title="character details"
-				className="col-span-1 flex flex-col flex-1 justify-start items-center gap-12 md:gap-6 w-full md:max-w-[280px] mx-auto"
+	return (
+		<section className="col-span-1 flex flex-col justify-start items-center md:items-start gap-8 w-full md:max-w-[280px] mx-auto">
+			{/* Profile Image */}
+			<Div
+				initial="exit"
+				animate="enter"
+				variants={animations.fade({ delay: 0.25 })}
+				className="w-full group"
 			>
-				<Div
-					initial="exit"
-					animate="enter"
-					variants={animations.fade({ delay: 0.25 })}
-					className="w-full h-full max-h-[280px] max-w-[280px] group"
+				<motion.div
+					whileHover={{ scale: 1.02 }}
+					transition={animations.hoverSpring}
+					className="relative"
 				>
 					<Image
 						src="/pfp.png"
 						width={280}
 						height={280}
-						alt="github pfp"
-						priority={false}
+						alt="Profile picture"
+						priority
 						placeholder="blur"
 						blurDataURL={BLUR_PLACEHOLDER}
-						className="rounded-3xl overflow-hidden w-full drop-shadow-lg shadow-xl shadow-primary/5 group-hover:shadow-2xl transition-shadow duration-500"
+						className="rounded-2xl w-full shadow-xl shadow-primary/5"
 					/>
-				</Div>
+					<div className="absolute -bottom-2 -right-2 px-2.5 py-1 bg-background border border-border rounded-full text-xs">
+						🇧🇷
+					</div>
+				</motion.div>
+			</Div>
 
-				<div className="flex flex-col w-full gap-2">
-					<Heading
-						initial="exit"
-						animate="enter"
-						variants={animations.fade({ delay: 0.75, y: 1.5 })}
-						primary
-						className="font-bold text-base tracking-[0.2em] mx-1 uppercase"
-					>
-						[Character Details]
+			{/* Details */}
+			<Div
+				initial="exit"
+				animate="enter"
+				variants={animations.fade({ delay: 0.5, y: 1 })}
+				className="w-full space-y-6"
+			>
+				<div>
+					<Heading className="text-[10px] font-semibold tracking-[0.2em] uppercase text-primary/30 mb-3">
+						Details
 					</Heading>
-
-					<Div
-						initial="exit"
-						animate="enter"
-						variants={animations.fade({ delay: 1.25, y: 2.5 })}
-						className="flex flex-col gap-1"
-					>
-						<p className="font-normal text-base text-primary/70">
-							<span className="text-primary/40">Name:</span> Nicolas R.
-						</p>
-						<p className="font-normal text-base text-primary/70">
-							<span className="text-primary/40">Age:</span> {age.toString()}{" "}
-							years old
-						</p>
-
-						<TooltipProvider>
-							<Tooltip>
-								<TooltipTrigger asChild>
-									<p className="font-normal text-base text-primary/70">
-										<span className="text-primary/40">Origin:</span> Brazil, PR
-									</p>
-								</TooltipTrigger>
-								<TooltipContent side="bottom">
-									<p>🇧🇷 Brazil mentioned</p>
-								</TooltipContent>
-							</Tooltip>
-						</TooltipProvider>
-
-						<p className="font-normal text-base text-primary/70">
-							<span className="text-primary/40">Class:</span> Software engineer
-						</p>
-						<p className="font-normal text-base text-primary/70">
-							<span className="text-primary/40">Specialization:</span> Full
-							stack
-						</p>
-					</Div>
+					<div className="space-y-1.5">
+						<DetailRow label="Name" value="Nicolas R." />
+						<DetailRow label="Age" value={`${age}`} />
+						<DetailRow label="Location" value="Brazil" />
+						<DetailRow label="Role" value="Software Engineer" />
+						<DetailRow label="Experience" value={`${years}+ years`} />
+					</div>
 				</div>
-			</section>
-  )
+
+				<div>
+					<Heading className="text-[10px] font-semibold tracking-[0.2em] uppercase text-primary/30 mb-3">
+						Stack
+					</Heading>
+					<div className="flex flex-wrap gap-1.5">
+						{SKILLS.map((skill) => (
+							<span
+								key={skill}
+								className="px-2.5 py-1 text-xs rounded-lg bg-secondary/40 text-primary/60"
+							>
+								{skill}
+							</span>
+						))}
+					</div>
+				</div>
+
+				<div>
+					<Link
+						href="https://github.com/d-kja"
+						target="_blank"
+						rel="noopener noreferrer"
+						className={cn(
+							"inline-flex items-center gap-2 text-sm",
+							"text-primary/40 hover:text-primary",
+							"transition-colors duration-200"
+						)}
+					>
+						<Github className="w-4 h-4" />
+						<span>d-kja</span>
+					</Link>
+				</div>
+			</Div>
+		</section>
+	);
+};
+
+function DetailRow({ label, value }: { label: string; value: string }) {
+	return (
+		<div className="flex items-center justify-between text-sm">
+			<span className="text-primary/30">{label}</span>
+			<span className="text-primary/70">{value}</span>
+		</div>
+	);
 }

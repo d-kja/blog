@@ -1,8 +1,9 @@
 "use client";
 
+import { animations } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 import { type HTMLMotionProps, motion } from "framer-motion";
-import { ExternalLink, FileText, FolderOpenDot } from "lucide-react";
+import { ArrowRight, FileText, FolderOpenDot } from "lucide-react";
 import Link from "next/link";
 
 export interface PostProps extends HTMLMotionProps<"div"> {
@@ -20,46 +21,49 @@ export const Post = ({
 	className,
 	...props
 }: PostProps) => {
-	const icon =
-		type === "post" ? (
-			<FileText className="w-full h-full text-inherit" strokeWidth={0.75} />
-		) : (
-			<FolderOpenDot
-				className="w-full h-full text-inherit"
-				strokeWidth={0.75}
-			/>
-		);
+	const Icon = type === "post" ? FileText : FolderOpenDot;
 
 	return (
 		<Link href={href}>
 			<motion.div
 				className={cn(
-					"grid grid-cols-8 transition-all rounded py-4 group relative hover:text-accent-foreground duration-300",
-					className,
+					"grid grid-cols-8 gap-3 rounded-lg py-4 px-2 -mx-2 group relative",
+					"hover:bg-secondary/30 transition-colors duration-300",
+					className
 				)}
+				whileHover={{ x: 4 }}
+				transition={animations.hoverSpring}
 				{...props}
 			>
-				<div className="col-span-1 max-w-[50px] mx-auto hidden md:flex">
-					{icon}
+				{/* Icon - desktop */}
+				<div className="col-span-1 max-w-[42px] mx-auto hidden md:flex items-start pt-1">
+					<Icon
+						className="w-full h-full text-primary/40 group-hover:text-primary/70 transition-colors duration-300"
+						strokeWidth={1.25}
+					/>
 				</div>
 
-				<div className="col-span-7">
-					<h3 className="font-medium flex items-center gap-1.5">
-						<div className="col-span-1 max-w-[16px] flex md:hidden">{icon}</div>
-						{title}
+				{/* Content */}
+				<div className="col-span-7 md:col-span-6">
+					<h3 className="font-medium flex items-center gap-2 group-hover:text-primary transition-colors">
+						{/* Icon - mobile */}
+						<Icon
+							className="w-4 h-4 flex-shrink-0 md:hidden text-primary/50 group-hover:text-primary/70 transition-colors"
+							strokeWidth={1.25}
+						/>
+						<span>{title}</span>
 					</h3>
-					<p className="lousy-text group-hover:text-accent-foreground transition-colors line-clamp-2">
+					<p className="lousy-text group-hover:text-primary/60 transition-colors line-clamp-2 mt-1">
 						{summary}
 					</p>
 				</div>
 
-				<span className="absolute top-2 right-2 w-[18px] h-[18px] transition-opacity opacity-0 group-hover:opacity-100 delay-100">
-					<ExternalLink
-						aria-label="redirect"
-						className="w-full h-full"
-						strokeWidth={1}
-					/>
-				</span>
+				{/* Arrow indicator */}
+				<ArrowRight
+					aria-hidden
+					className="absolute top-1/2 -translate-y-1/2 right-2 w-4 h-4 text-primary/30 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300"
+					strokeWidth={1.5}
+				/>
 			</motion.div>
 		</Link>
 	);

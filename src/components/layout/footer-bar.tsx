@@ -7,13 +7,7 @@ export const Footer = () => {
 	const currentYear = new Date().getFullYear();
 
 	const handleScrollTop = () => {
-		if (!document) return;
-
-		// Safari
-		document.body.scrollTop = 0;
-
-		// Any normal browser 😉
-		document.documentElement.scrollTop = 0;
+		window.scrollTo({ top: 0, behavior: "smooth" });
 	};
 
 	return (

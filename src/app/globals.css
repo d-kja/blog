@@ -89,15 +89,145 @@
 	}
 
 	.invert-colors {
-		-webkit-filter: grayscale(1) invert(1);
 		filter: grayscale(1) invert(1);
 	}
 
 	.fade-image-top {
-		@apply relative after:absolute after:inset-0 after:bg-gradient-to-b after:from-primary-foreground/35 after:to-transparent;
+		@apply relative after:absolute after:inset-0 after:bg-gradient-to-b after:from-primary-foreground/35 after:to-transparent after:content-[''];
+	}
 
-		&::after {
-			content: "";
-		}
+	::selection {
+		@apply bg-primary/20 text-primary;
+	}
+
+	:focus-visible {
+		@apply outline-none ring-2 ring-primary/30 ring-offset-2 ring-offset-background;
+	}
+
+	::-webkit-scrollbar {
+		@apply w-2 h-2;
+	}
+
+	::-webkit-scrollbar-track {
+		@apply bg-transparent;
+	}
+
+	::-webkit-scrollbar-thumb {
+		@apply bg-primary/20 rounded-full;
+	}
+
+	::-webkit-scrollbar-thumb:hover {
+		@apply bg-primary/30;
+	}
+}
+
+@layer components {
+	.prose-custom {
+		@apply text-primary/80 leading-relaxed;
+	}
+
+	.prose-custom h1 {
+		@apply text-3xl font-bold mt-8 mb-4 text-primary;
+	}
+
+	.prose-custom h2 {
+		@apply text-2xl font-bold mt-8 mb-4 text-primary;
+	}
+
+	.prose-custom h3 {
+		@apply text-xl font-semibold mt-6 mb-3 text-primary;
+	}
+
+	.prose-custom h4 {
+		@apply text-lg font-semibold mt-4 mb-2 text-primary;
+	}
+
+	.prose-custom p {
+		@apply mb-4 leading-relaxed text-primary/70;
+	}
+
+	.prose-custom a {
+		@apply text-primary underline underline-offset-4 hover:text-primary/80 transition-colors;
+	}
+
+	.prose-custom strong {
+		@apply font-semibold text-primary;
+	}
+
+	.prose-custom em {
+		@apply italic;
+	}
+
+	.prose-custom ul {
+		@apply list-disc list-inside mb-4 space-y-2 text-primary/70;
+	}
+
+	.prose-custom ol {
+		@apply list-decimal list-inside mb-4 space-y-2 text-primary/70;
+	}
+
+	.prose-custom li {
+		@apply ml-2;
+	}
+
+	.prose-custom li > ul,
+	.prose-custom li > ol {
+		@apply mt-2 mb-0 ml-4;
+	}
+
+	.prose-custom blockquote {
+		@apply border-l-4 border-primary/30 pl-4 italic my-6 text-primary/60;
+	}
+
+	.prose-custom pre {
+		@apply bg-secondary/50 border border-border rounded-lg p-4 mb-4 overflow-x-auto text-sm;
+	}
+
+	.prose-custom code {
+		@apply bg-secondary/50 px-1.5 py-0.5 rounded text-sm font-mono text-primary/80;
+	}
+
+	.prose-custom pre code {
+		@apply bg-transparent p-0 text-inherit;
+	}
+
+	.prose-custom hr {
+		@apply border-border my-8;
+	}
+
+	.prose-custom table {
+		@apply w-full border-collapse mb-4;
+	}
+
+	.prose-custom th {
+		@apply border border-border bg-secondary/30 px-4 py-2 text-left font-semibold text-primary;
+	}
+
+	.prose-custom td {
+		@apply border border-border px-4 py-2 text-primary/70;
+	}
+
+	.prose-custom img {
+		@apply rounded-lg my-6 max-w-full;
+	}
+
+	.prose-custom > h1:first-child,
+	.prose-custom > h2:first-child {
+		@apply mt-0;
+	}
+}
+
+@layer utilities {
+	.animated-underline {
+		@apply relative;
+	}
+
+	.animated-underline::after {
+		content: "";
+		@apply absolute bottom-0 left-0 w-0 h-[1px] bg-primary transition-all duration-300;
+	}
+
+	.animated-underline:hover::after {
+		@apply w-full;
 	}
 }
