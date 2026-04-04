@@ -1,5 +1,6 @@
 import { readdirSync, readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
+import { marked } from "marked";
 
 const POSTS_DIR = join(import.meta.dir, "..", "public", "posts");
 const CACHE_DIR = join(import.meta.dir, "..", ".content-cache");
@@ -82,7 +83,7 @@ function processPost(slug: string): CachedPost | null {
 		tags: (meta.tags as string[]) || [],
 		type,
 		readingTime: calculateReadingTime(content),
-		contentHtml: Bun.markdown.html(content),
+		contentHtml: marked(content) as string,
 	};
 }
 
