@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
-import { FileText, FolderOpenDot, Home, Menu, User, X } from "lucide-react";
+import { Bike, FileText, FolderOpenDot, Home, Menu, User, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -11,6 +11,7 @@ const navItems = [
 	{ href: "/", label: "Home", icon: Home },
 	{ href: "/posts", label: "Posts", icon: FileText },
 	{ href: "/projects", label: "Projects", icon: FolderOpenDot },
+	{ href: "/garage", label: "Garage", icon: Bike },
 	{ href: "/about", label: "About", icon: User },
 ];
 

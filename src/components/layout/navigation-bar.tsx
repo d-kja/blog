@@ -30,6 +30,12 @@ export const Navigation = () => {
 					Projects
 				</NavigationButton>
 				<NavigationButton
+					href="/garage"
+					className="hidden md:inline-block animated-underline"
+				>
+					Garage
+				</NavigationButton>
+				<NavigationButton
 					href="/about"
 					className="hidden md:inline-block animated-underline"
 				>
