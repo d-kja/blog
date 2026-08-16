@@ -93,7 +93,7 @@ const BIKES: BikeWrap[] = [
 		name: "390 Duke",
 		maker: "KTM Brasil",
 		summary:
-			"The same wrap language on a Brazilian-market 390 Duke. Naked bodywork stays black. The metal only shows on the shroud edges, rims, and a small 390 badge.",
+			"The same wrap language on the 2nd-gen 390 Duke sold in Brazil — split LED headlights, compact tank, trellis frame. Naked bodywork stays black. The metal only shows on the shroud edges, rims, and a small 390 badge.",
 		badgeLabel: "390 Duke metallic badge",
 		placements: [
 			{
@@ -116,7 +116,7 @@ const BIKES: BikeWrap[] = [
 				accent: "Platinum chrome",
 				finish: "Gloss piano black",
 				description:
-					"A murdered-out Duke with jewelry-thin platinum chrome. No factory orange — just rim tape, shroud piping, and a small 390 badge on the tank and tail.",
+					"A murdered-out 2nd-gen Duke with jewelry-thin platinum chrome. No factory orange — just rim tape, shroud piping, and a small 390 badge on the tank and tail.",
 				bike: "/garage/ktm-390-duke-ghost-white.png",
 				logo: "/garage/ktm-390-logo-ghost-white.png",
 				swatch: "#d7d7d7",
