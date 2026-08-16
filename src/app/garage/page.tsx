@@ -4,11 +4,11 @@ import { GarageGallery } from "./garage-gallery";
 export const metadata: Metadata = {
 	title: "Garage",
 	description:
-		"Vinyl wrap concepts for a Kawasaki Ninja 500 SE — stealth black with small metallic accents.",
+		"Vinyl wrap concepts for a Kawasaki Ninja 500 SE and a KTM 390 Duke — stealth black with small metallic accents.",
 	openGraph: {
 		title: "Garage | D-kja",
 		description:
-			"Three stealth-black vinyl wrap variants for the Ninja 500 SE, each with a small metallic N5 badge.",
+			"Stealth-black vinyl wrap variants for the Ninja 500 SE and the KTM 390 Duke, each with a small metallic badge.",
 	},
 };
 

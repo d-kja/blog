@@ -20,46 +20,141 @@ interface WrapVariant {
 	swatch: string;
 }
 
-const VARIANTS: WrapVariant[] = [
+interface BikeWrap {
+	id: string;
+	name: string;
+	maker: string;
+	summary: string;
+	badgeLabel: string;
+	placements: { title: string; detail: string }[];
+	variants: WrapVariant[];
+}
+
+const BIKES: BikeWrap[] = [
 	{
-		id: "ghost",
-		name: "Ghost",
-		accent: "Platinum chrome",
-		finish: "Gloss piano black",
-		description:
-			"A murdered-out gloss wrap with jewelry-thin platinum chrome. The metal only shows up as rim tape, a fairing-vent inlay, and a small N5 badge on the tank and tail.",
-		bike: "/garage/ninja-500-se-ghost-white.png",
-		logo: "/garage/ninja-500-logo-ghost-white.png",
-		swatch: "#d7d7d7",
+		id: "ninja",
+		name: "Ninja 500 SE",
+		maker: "Kawasaki",
+		summary:
+			"Vinyl wrap concepts for the Ninja 500 SE. Black does the talking. Small metallic accents do the rest.",
+		badgeLabel: "N5 SE metallic badge",
+		placements: [
+			{
+				title: "Rim tape",
+				detail: "A 3mm metallic pinstripe on the outer wheel edge.",
+			},
+			{
+				title: "Fairing piping",
+				detail: "Thin inlay along the vent cuts and chin spoiler lip.",
+			},
+			{
+				title: "N5 badge",
+				detail: "Small metallic mark on the tank side and tail cowl.",
+			},
+		],
+		variants: [
+			{
+				id: "ghost",
+				name: "Ghost",
+				accent: "Platinum chrome",
+				finish: "Gloss piano black",
+				description:
+					"A murdered-out gloss wrap with jewelry-thin platinum chrome. The metal only shows up as rim tape, a fairing-vent inlay, and a small N5 badge on the tank and tail.",
+				bike: "/garage/ninja-500-se-ghost-white.png",
+				logo: "/garage/ninja-500-logo-ghost-white.png",
+				swatch: "#d7d7d7",
+			},
+			{
+				id: "strike",
+				name: "Strike",
+				accent: "Candy metallic red",
+				finish: "Gloss piano black",
+				description:
+					"Same stealth black base, with liquid-metal crimson catching light on the rim edge, the vent cut lines, and a compact N5 mark. Enough red to pop, not enough to shout.",
+				bike: "/garage/ninja-500-se-strike-red.png",
+				logo: "/garage/ninja-500-logo-strike-red.png",
+				swatch: "#c41e3a",
+			},
+			{
+				id: "phantom",
+				name: "Phantom",
+				accent: "Amethyst metallic",
+				finish: "Satin stealth black",
+				description:
+					"Matte black bodywork with dark metallic purple flake. The accent stays in the same small places — rims, vent piping, tank and tail badges — so the bike reads black until the light hits it.",
+				bike: "/garage/ninja-500-se-phantom-purple.png",
+				logo: "/garage/ninja-500-logo-phantom-purple.png",
+				swatch: "#6b2d8b",
+			},
+		],
 	},
 	{
-		id: "strike",
-		name: "Strike",
-		accent: "Candy metallic red",
-		finish: "Gloss piano black",
-		description:
-			"Same stealth black base, with liquid-metal crimson catching light on the rim edge, the vent cut lines, and a compact N5 mark. Enough red to pop, not enough to shout.",
-		bike: "/garage/ninja-500-se-strike-red.png",
-		logo: "/garage/ninja-500-logo-strike-red.png",
-		swatch: "#c41e3a",
-	},
-	{
-		id: "phantom",
-		name: "Phantom",
-		accent: "Amethyst metallic",
-		finish: "Satin stealth black",
-		description:
-			"Matte black bodywork with dark metallic purple flake. The accent stays in the same small places — rims, vent piping, tank and tail badges — so the bike reads black until the light hits it.",
-		bike: "/garage/ninja-500-se-phantom-purple.png",
-		logo: "/garage/ninja-500-logo-phantom-purple.png",
-		swatch: "#6b2d8b",
+		id: "ktm",
+		name: "390 Duke",
+		maker: "KTM Brasil",
+		summary:
+			"The same wrap language on a Brazilian-market 390 Duke. Naked bodywork stays black. The metal only shows on the shroud edges, rims, and a small 390 badge.",
+		badgeLabel: "390 Duke metallic badge",
+		placements: [
+			{
+				title: "Rim tape",
+				detail: "A 3mm metallic pinstripe on the outer wheel edge.",
+			},
+			{
+				title: "Shroud piping",
+				detail: "Thin inlay along the tank-shroud cut and radiator edge.",
+			},
+			{
+				title: "390 badge",
+				detail: "Small metallic mark on the tank shroud and tail cowl.",
+			},
+		],
+		variants: [
+			{
+				id: "ghost",
+				name: "Ghost",
+				accent: "Platinum chrome",
+				finish: "Gloss piano black",
+				description:
+					"A murdered-out Duke with jewelry-thin platinum chrome. No factory orange — just rim tape, shroud piping, and a small 390 badge on the tank and tail.",
+				bike: "/garage/ktm-390-duke-ghost-white.png",
+				logo: "/garage/ktm-390-logo-ghost-white.png",
+				swatch: "#d7d7d7",
+			},
+			{
+				id: "strike",
+				name: "Strike",
+				accent: "Candy metallic red",
+				finish: "Gloss piano black",
+				description:
+					"Stealth black Duke with liquid-metal crimson on the rim edge, the tank-shroud cut, and a compact 390 mark. The trellis stays black so the red actually pops.",
+				bike: "/garage/ktm-390-duke-strike-red.png",
+				logo: "/garage/ktm-390-logo-strike-red.png",
+				swatch: "#c41e3a",
+			},
+			{
+				id: "phantom",
+				name: "Phantom",
+				accent: "Amethyst metallic",
+				finish: "Satin stealth black",
+				description:
+					"Matte black Duke with dark metallic purple flake. Same small placements — rims, shroud piping, tank and tail badges — so it reads black until the light hits it.",
+				bike: "/garage/ktm-390-duke-phantom-purple.png",
+				logo: "/garage/ktm-390-logo-phantom-purple.png",
+				swatch: "#6b2d8b",
+			},
+		],
 	},
 ];
 
 export function GarageGallery() {
-	const [activeId, setActiveId] = useState(VARIANTS[0].id);
+	const [bikeId, setBikeId] = useState(BIKES[0].id);
+	const [accentId, setAccentId] = useState(BIKES[0].variants[0].id);
+
+	const bike = BIKES.find((item) => item.id === bikeId) ?? BIKES[0];
 	const active =
-		VARIANTS.find((variant) => variant.id === activeId) ?? VARIANTS[0];
+		bike.variants.find((variant) => variant.id === accentId) ??
+		bike.variants[0];
 
 	return (
 		<main className="my-16 flex flex-col max-w-screen-lg mx-auto flex-1 w-full px-4">
@@ -80,8 +175,7 @@ export function GarageGallery() {
 					variants={animations.fade({ delay: 0.4, y: 0.75 })}
 					className="lousy-text text-lg max-w-2xl"
 				>
-					Vinyl wrap concepts for the Ninja 500 SE. Black does the talking.
-					Small metallic accents do the rest.
+					{bike.summary}
 				</P>
 			</header>
 
@@ -89,16 +183,47 @@ export function GarageGallery() {
 				initial="exit"
 				animate="enter"
 				variants={animations.fade({ delay: 0.55, y: 1 })}
+				className="flex flex-wrap gap-2 mb-4"
+			>
+				{BIKES.map((item) => {
+					const isActive = item.id === bike.id;
+
+					return (
+						<button
+							key={item.id}
+							type="button"
+							onClick={() => setBikeId(item.id)}
+							className={cn(
+								"px-4 py-2 rounded-lg text-sm font-medium",
+								"border transition-all duration-200",
+								isActive
+									? "bg-secondary/60 border-primary/30 text-primary"
+									: "bg-secondary/10 border-border text-primary/50 hover:text-primary hover:bg-secondary/30"
+							)}
+						>
+							<span className="block leading-tight">{item.name}</span>
+							<span className="block text-[10px] uppercase tracking-wider text-primary/40">
+								{item.maker}
+							</span>
+						</button>
+					);
+				})}
+			</Div>
+
+			<Div
+				initial="exit"
+				animate="enter"
+				variants={animations.fade({ delay: 0.65, y: 1.1 })}
 				className="flex flex-wrap gap-2 mb-8"
 			>
-				{VARIANTS.map((variant) => {
+				{bike.variants.map((variant) => {
 					const isActive = variant.id === active.id;
 
 					return (
 						<button
 							key={variant.id}
 							type="button"
-							onClick={() => setActiveId(variant.id)}
+							onClick={() => setAccentId(variant.id)}
 							className={cn(
 								"flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium",
 								"border transition-all duration-200",
@@ -127,7 +252,7 @@ export function GarageGallery() {
 				<div className="relative aspect-[16/9] bg-secondary/20">
 					<AnimatePresence mode="wait">
 						<motion.div
-							key={active.id}
+							key={`${bike.id}-${active.id}`}
 							initial={{ opacity: 0 }}
 							animate={{ opacity: 1 }}
 							exit={{ opacity: 0 }}
@@ -136,7 +261,7 @@ export function GarageGallery() {
 						>
 							<Image
 								src={active.bike}
-								alt={`${active.name} vinyl wrap on a Kawasaki Ninja 500 SE`}
+								alt={`${active.name} vinyl wrap on a ${bike.maker} ${bike.name}`}
 								fill
 								priority
 								sizes="(max-width: 1024px) 100vw, 1024px"
@@ -180,7 +305,7 @@ export function GarageGallery() {
 				<div className="rounded-xl overflow-hidden border border-border bg-black">
 					<Image
 						src={active.logo}
-						alt={`${active.name} N5 SE metallic badge`}
+						alt={`${active.name} ${bike.badgeLabel}`}
 						width={320}
 						height={320}
 						className="w-full h-auto"
@@ -193,20 +318,7 @@ export function GarageGallery() {
 					Where the metal goes
 				</h2>
 				<div className="grid gap-4 sm:grid-cols-3">
-					{[
-						{
-							title: "Rim tape",
-							detail: "A 3mm metallic pinstripe on the outer wheel edge.",
-						},
-						{
-							title: "Fairing piping",
-							detail: "Thin inlay along the vent cuts and chin spoiler lip.",
-						},
-						{
-							title: "N5 badge",
-							detail: "Small metallic mark on the tank side and tail cowl.",
-						},
-					].map((item) => (
+					{bike.placements.map((item) => (
 						<div
 							key={item.title}
 							className="p-4 rounded-xl border border-border bg-secondary/20"
